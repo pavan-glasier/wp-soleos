@@ -73,8 +73,8 @@ function my_acf_op_init() {
 	if (function_exists('acf_add_options_page')) {
 		// Theme General Options
 		$general_options   = array(
-			'page_title' 	=> __('Theme General Options', 'glasierinc'),
-			'menu_title'	=> __('Theme Options', 'glasierinc'),
+			'page_title' 	=> __('Theme General Options', 'soleos'),
+			'menu_title'	=> __('Theme Options', 'soleos'),
 			'menu_slug' 	=> 'theme-general-options',
 			'capability'	=> 'edit_posts',
 			'redirect'	=> true,
@@ -96,3 +96,178 @@ function my_acf_op_init() {
 	}
 
 }
+
+
+// add css file in admin for acf
+function acf_admin_theme_style()
+{
+  wp_enqueue_style( 'acf-admin', get_template_directory_uri() . '/assets/css/acf-admin.css' );
+}
+add_action('admin_enqueue_scripts', 'acf_admin_theme_style');
+add_action('login_enqueue_scripts', 'acf_admin_theme_style');
+
+
+// service post type register
+/**
+ * Post Type: Services.
+ */
+function register_soleos_services() {
+	$labels = [
+		"name" => __( "Services", "soleos" ),
+		"singular_name" => __( "Services", "soleos" ),
+	];
+	$args = [
+		"label" => __( "Services", "soleos" ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"rest_controller_class" => "WP_REST_Posts_Controller",
+		"has_archive" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"delete_with_user" => false,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => true,
+		"rewrite" => [ "slug" => "services", "with_front" => true ],
+		"query_var" => true,
+		"menu_icon" => "dashicons-grid-view",
+		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
+		"show_in_graphql" => false,
+	];
+	register_post_type( "services", $args );
+}
+add_action( 'init', 'register_soleos_services' );
+
+
+/**
+ * Taxonomy: Service Category.
+ */
+function register_soleos_service_category() {
+	$labels = [
+		"name" => __( "Categories", "soleos" ),
+		"singular_name" => __( "Categories", "soleos" ),
+	];	
+	$args = [
+		"label" => __( "Categories", "soleos" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => true,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'service_category', 'with_front' => true,  'hierarchical' => true, ],
+		"show_admin_column" => true,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "service_category",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"show_in_quick_edit" => true,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "service_category", [ "services" ], $args );
+}
+add_action( 'init', 'register_soleos_service_category' );
+
+
+
+
+
+/**
+ * Post Type: Testimonial.
+ */
+function register_soleos_testimonial() {
+	$labels = [
+		"name" => __( "Testimonial", "soleos" ),
+		"singular_name" => __( "Testimonial", "soleos" ),
+	];
+	$args = [
+		"label" => __( "Testimonial", "soleos" ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"rest_controller_class" => "WP_REST_Posts_Controller",
+		"has_archive" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"delete_with_user" => false,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => [ "slug" => "testimonial", "with_front" => true ],
+		"query_var" => true,
+		"menu_icon" => "dashicons-editor-quote",
+		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
+		"show_in_graphql" => false,
+	];
+	register_post_type( "testimonial", $args );
+}
+add_action( 'init', 'register_soleos_testimonial' );
+
+
+/**
+ * Taxonomy: Testimonial Category.
+ */
+function register_soleos_testi_category() {
+	$labels = [
+		"name" => __( "Categories", "soleos" ),
+		"singular_name" => __( "Categories", "soleos" ),
+	];
+	$args = [
+		"label" => __( "Categories", "soleos" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => true,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'testi_category', 'with_front' => true,  'hierarchical' => true, ],
+		"show_admin_column" => true,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "testi_category",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"show_in_quick_edit" => true,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "testi_category", [ "testimonial" ], $args );
+}
+add_action( 'init', 'register_soleos_testi_category' );
+
+
+
+
+// Allow SVG
+add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+	global $wp_version;
+	if ( $wp_version !== '4.7.1' ) {
+	   return $data;
+	}
+	$filetype = wp_check_filetype( $filename, $mimes );
+	return [
+		'ext'             => $filetype['ext'],
+		'type'            => $filetype['type'],
+		'proper_filename' => $data['proper_filename']
+	];
+  }, 10, 4 );
+  
+  function cc_mime_types( $mimes ){
+	$mimes['svg'] = 'image/svg';
+	return $mimes;
+  }
+  add_filter( 'upload_mimes', 'cc_mime_types' );
+  

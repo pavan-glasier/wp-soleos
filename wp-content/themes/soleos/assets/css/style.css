@@ -14864,7 +14864,9 @@ header .header-top-bar .top-social-icons a:hover {
   background-color: #fc8f14;
   color: #fff;
 }
-
+.service-one__read-more:hover .arrow_modification {
+  color: #fff;
+}
 .section-title {
   position: relative;
   margin-bottom: 60px;

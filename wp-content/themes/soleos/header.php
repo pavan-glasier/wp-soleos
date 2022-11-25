@@ -31,22 +31,22 @@
 			<div class="spinner">
 			</div>
 			<div class="txt-loading">
-				<span data-text-preloader="B" class="letters-loading">
+				<span data-text-preloader="S" class="letters-loading">
 					S
 				</span>
-				<span data-text-preloader="U" class="letters-loading">
+				<span data-text-preloader="O" class="letters-loading">
+					O
+				</span>
+				<span data-text-preloader="L" class="letters-loading">
+					L
+				</span>
+				<span data-text-preloader="E" class="letters-loading">
+					E
+				</span>
+				<span data-text-preloader="O" class="letters-loading">
 					O
 				</span>
 				<span data-text-preloader="S" class="letters-loading">
-					L
-				</span>
-				<span data-text-preloader="I" class="letters-loading">
-					E
-				</span>
-				<span data-text-preloader="C" class="letters-loading">
-					O
-				</span>
-				<span data-text-preloader="O" class="letters-loading">
 					S
 				</span>
 			</div>
@@ -81,47 +81,6 @@
 				</div>
 				<div class="header-right-area d-flex justify-content-between">
 					<div class="main-menu d-none d-xl-block me-xl-5">
-						<!-- <ul>
-							<li><a href="#">Home </a></li>
-							<li><a href="#">About</a></li>
-							<li>
-								<a href="#">Solutions <i class="fal fa-plus"></i></a>
-								<ul class="sub-menu">
-									<li><a href="#">about 2</a></li>
-									<li><a href="#">team</a></li>
-									<li><a href="#">faq</a></li>
-									<li><a href="#">projects</a></li>
-									<li><a href="#">projects 2</a></li>
-									<li><a href="#">Pricing</a></li>
-									<li><a href="#">Pricing 2</a></li>
-									<li><a href="#">services 2</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Products <i class="fal fa-plus"></i></a>
-								<ul class="sub-menu">
-									<li><a href="#">about 2</a></li>
-									<li><a href="#">team</a></li>
-									<li><a href="#">faq</a></li>
-									<li><a href="#">projects</a></li>
-									<li><a href="#">projects 2</a></li>
-									<li><a href="#">Pricing</a></li>
-									<li><a href="#">Pricing 2</a></li>
-									<li><a href="#">services 2</a></li>
-								</ul>
-							</li>
-							<li><a href="#">Sector</a></li>
-							<li><a href="#">Contact</a></li>
-							<li class="languages">
-								<select name="languages">
-									<option value="en">EN</option>
-									<option value="es">ES</option>
-									<option value="pt">PT</option>
-									<option value="fr">FR</option>
-									<option value="zh">ZH</option>
-								</select>
-							</li>
-						</ul> -->
 						<?php
 							wp_nav_menu(
 								array(
@@ -130,7 +89,7 @@
 									'container'        => 'ul',
 								)
 							);
-							?>
+						?>
 					</div>
 					<div class="header-right-elements d-flex align-items-center justify-content-between">
 						<a href="#" class="theme-btn style-3 d-none d-sm-block mobiledis">Download</a>
