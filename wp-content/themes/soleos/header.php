@@ -71,74 +71,85 @@
 	</div>
 	<!-- End Soleos loader -->
 
-		<!-- Desktop and Mobile Menu -->
-		<header class="header-wrap header-1">
-			<div class="container-fluid d-flex justify-content-between align-items-center">
-				<div class="logo">
-					<a href="<?php echo esc_url(home_url('/')); ?>">
-						<?php the_custom_logo(); ?>
-					</a>
+	<!-- Desktop and Mobile Menu -->
+	<header class="header-wrap header-1">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div class="logo">
+				<?php the_custom_logo(); ?>
+			</div>
+			<div class="header-right-area d-flex justify-content-between">
+				<div class="main-menu d-none d-xl-block me-xl-5">
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'header-menu',
+							'menu_id'        => 'primary-menu',
+							'container'        => 'ul',
+						)
+					);
+					?>
 				</div>
-				<div class="header-right-area d-flex justify-content-between">
-					<div class="main-menu d-none d-xl-block me-xl-5">
-						<?php
-							wp_nav_menu(
-								array(
-									'theme_location' => 'header-menu',
-									'menu_id'        => 'primary-menu',
-									'container'        => 'ul',
-								)
-							);
-						?>
-					</div>
-					<div class="header-right-elements d-flex align-items-center justify-content-between">
-						<a href="#" class="theme-btn style-3 d-none d-sm-block mobiledis">Download</a>
-						<div class="d-inline-block ms-4 d-xl-none">
-							<div class="mobile-nav-wrap">
-								<div id="hamburger">
-									<i class="fal fa-bars"></i>
-								</div>
-								<!-- mobile menu - responsive menu  -->
-								<div class="mobile-nav">
-									<button type="button" class="close-nav">
-										<i class="fal fa-times-circle"></i>
-									</button>
-									<nav class="sidebar-nav">
-										<ul class="metismenu" id="mobile-menu">
-											<li>
-												<a class="has-arrow" href="#">Homes</a>
-												<ul class="sub-menu">
-													<li><a href="#">homepage 1</a></li>
-													<li><a href="#">homepage 2</a></li>
-													<li><a href="#">homepage 3</a></li>
-													<li><a href="#">homepage 4</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Services</a></li>
-											<li><a href="#">portfolio</a></li>
-											<li>
-												<a class="has-arrow" href="#">Pages</a>
-												<ul class="sub-menu">
-													<li><a href="#">faq</a></li>
-													<li><a href="#">services details</a></li>
-													<li><a href="#">Team</a></li>
-												</ul>
-											</li>
-											<li><a href="#">News</a></li>
-											<li><a href="#">Contact</a></li>
-										</ul>
-									</nav>
-									<div class="action-bar">
-										<a href="mailto:modinatheme@gmail.com"><i class="fal fa-envelope"></i>info@webmail.com</a>
-										<a href="tel:123-456-7890"><i class="fal fa-phone"></i>987-098-098-09</a>
-										<a href="c#" class="d-btn theme-btn">Contact Us</a>
-									</div>
+				<div class="header-right-elements d-flex align-items-center justify-content-between">
+				<?php 
+				$menu_1_link = get_field('menu_button', 'option');
+				if( $menu_1_link ): 
+					$menu_1_link_url = $menu_1_link['url'];
+					$menu_1_link_title = $menu_1_link['title'];
+					$menu_1_link_target = $menu_1_link['target'] ? $menu_1_link['target'] : '_self';
+					?>
+					<a class="theme-btn style-3 d-none d-sm-block mobiledis" href="<?php echo esc_url( $menu_1_link_url ); ?>" target="<?php echo esc_attr( $menu_1_link_target ); ?>"><?php echo esc_html( $menu_1_link_title ); ?></a>
+				<?php endif; ?>
+					<div class="d-inline-block ms-4 d-xl-none">
+						<div class="mobile-nav-wrap">
+							<div id="hamburger">
+								<i class="fal fa-bars"></i>
+							</div>
+							<!-- mobile menu - responsive menu  -->
+							<div class="mobile-nav">
+								<button type="button" class="close-nav">
+									<i class="fal fa-times-circle"></i>
+								</button>
+								<nav class="sidebar-nav">
+									<?php
+									wp_nav_menu(
+										array(
+											'theme_location' => 'mobile-menu',
+											'menu_id'        => 'mobile-menu',
+											'container'      => 'ul',
+											'menu_class'     => 'metismenu',
+										)
+									);
+									?>
+								</nav>
+								<div class="action-bar">
+									<?php 
+									$email_menu = get_field('email', 'option');
+									$phone_menu = get_field('phone', 'option');
+									?>
+									<?php if( !empty( $email_menu ) ):?>
+									<a href="mailto:<?php echo $email_menu;?>"><i class="fal fa-envelope"></i><?php echo $email_menu;?></a>
+									<?php endif; ?>
+
+									<?php if( !empty( $phone_menu ) ):?>
+									<a href="tel:<?php echo $phone_menu;?>"><i class="fal fa-phone"></i><?php echo $phone_menu;?></a>
+									<?php endif; ?>
+
+									<?php 
+									$menu_2_link = get_field('menu_button', 'option');
+									if( $menu_2_link ): 
+										$menu_2_link_url = $menu_2_link['url'];
+										$menu_2_link_title = $menu_2_link['title'];
+										$menu_2_link_target = $menu_2_link['target'] ? $menu_2_link['target'] : '_self';
+										?>
+										<a class="d-btn theme-btn" href="<?php echo esc_url( $menu_2_link_url ); ?>" target="<?php echo esc_attr( $menu_2_link_target ); ?>"><?php echo esc_html( $menu_2_link_title ); ?></a>
+									<?php endif; ?>
 								</div>
 							</div>
-							<div class="overlay"></div>
 						</div>
+						<div class="overlay"></div>
 					</div>
 				</div>
 			</div>
-		</header>
-		<!-- End Desktop and Mobile Menu -->
+		</div>
+	</header>
+	<!-- End Desktop and Mobile Menu -->

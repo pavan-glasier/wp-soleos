@@ -50,6 +50,7 @@ function soleos_setup() {
 	register_nav_menus(
 		array(
 			'header-menu' => esc_html__( 'Header Menu', 'soleos' ),
+			'mobile-menu' => esc_html__( 'Mobile Menu', 'soleos' ),
 			'footer-menu-1' => esc_html__( 'Footer Menu 1', 'soleos' ),
 			'footer-menu-2' => esc_html__( 'Footer Menu 2', 'soleos' ),
 			'footer-menu-3' => esc_html__( 'Footer Menu 3', 'soleos' ),

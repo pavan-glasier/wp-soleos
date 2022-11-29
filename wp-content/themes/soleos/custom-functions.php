@@ -150,8 +150,8 @@ add_action( 'init', 'register_soleos_services' );
  */
 function register_soleos_service_category() {
 	$labels = [
-		"name" => __( "Categories", "soleos" ),
-		"singular_name" => __( "Categories", "soleos" ),
+		"name" => __( "Service Categories", "soleos" ),
+		"singular_name" => __( "Category", "soleos" ),
 	];	
 	$args = [
 		"label" => __( "Categories", "soleos" ),
@@ -222,8 +222,8 @@ add_action( 'init', 'register_soleos_testimonial' );
  */
 function register_soleos_testi_category() {
 	$labels = [
-		"name" => __( "Categories", "soleos" ),
-		"singular_name" => __( "Categories", "soleos" ),
+		"name" => __( "Testimonial Categories", "soleos" ),
+		"singular_name" => __( "Category", "soleos" ),
 	];
 	$args = [
 		"label" => __( "Categories", "soleos" ),
@@ -271,3 +271,24 @@ add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mime
   }
   add_filter( 'upload_mimes', 'cc_mime_types' );
   
+
+// active class add in current active nav item
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10, 2);
+function special_nav_class($classes, $item){
+     if( in_array('current-menu-item', $classes) ){
+             $classes[] = 'active ';
+     }
+     return $classes;
+}
+
+
+// add class in nav menu link in mobile menu
+function add_specific_menu_location_atts( $atts, $item, $args ) {
+	if( in_array('menu-item-has-children', $item->classes) ){
+		if( $args->menu->name == 'MobileMenu' ) {
+			$atts['class'] = 'has-arrow';
+		}
+	}
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'add_specific_menu_location_atts', 10, 3 );
