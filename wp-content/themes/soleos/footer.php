@@ -9,9 +9,27 @@
  *
  * @package soleos
  */
-
 ?>
-
+<?php if(!is_404()):?>
+<!--Lets News Section-->
+<section class="contact-sec-wrapper fix section-bg section-padding1">
+   <div class="container">
+      <div class="row align-items-end d-flex">
+         <div class="col-lg-6 col-xl-5">
+            <div class="section-title-3 letsnewsposi">
+               <h3>Latest News & Updates</h3>
+               <p>In social science, agency is defined as the capacity of individuals to act independently to make their own free choices. </p>
+            </div>
+         </div>
+         <div class="col-lg-6 col-xl-6 mt-5 mt-lg-0 offset-xl-1">
+            <div class="homepage-contact-from ms-xl-5">
+			   <?php echo do_shortcode('[contact-form-7 id="206" title="Subscribe Form" html_class=""]'); ?>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<?php endif;?>
 <!--Footer-->
 <footer class="footer-5 ">
 	<div class="footer-widgets-wrapper text-white">
@@ -157,8 +175,6 @@
 	</div>
 	<?php endif; ?>
 </footer>
-
-
 <?php wp_footer(); ?>
 
 </body>

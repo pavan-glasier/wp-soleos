@@ -74,7 +74,7 @@ get_header(); ?>
                               
                               <div class="col-lg-3 col-md-6 col-12">
                                  <div class="single-fun-fact mt-4">
-                                    <h2><?php echo get_sub_field('number');?></h2>
+                                    <h2><span class="is-visible"><?php echo get_sub_field('number');?></span><?php echo get_sub_field('prefix');?></h2>
                                     <h3><?php echo get_sub_field('text');?></h3>
                                  </div>
                               </div>
@@ -202,7 +202,7 @@ get_header(); ?>
       <?php 
       $serv_args = array(
          'post_type' => 'services',
-         'order' => 'ASC',
+         'order' => 'DESC',
          'posts_per_page' => 3,
          ); 
          ?>
@@ -218,8 +218,7 @@ get_header(); ?>
                <!-- <i class="fa-solid fa-solar-panel service-one__icon"></i> -->
                <h3 class="service-one__title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
                <div class="service-one__text">
-                  <?php $content = get_the_content();
-                     echo wp_trim_words($content, 15, "."); ?>
+                  <?php echo wp_trim_words(get_the_content(), 15, "."); ?>
                </div>
                <a href="<?php the_permalink();?>" class="service-one__read-more">Read More
                   <i class="fal fa-long-arrow-right arrow_modification"></i>
@@ -360,41 +359,6 @@ if ($testi_query->have_posts()) : ?>
 <?php endif; ?>
 <?php endwhile; ?>
 
-
-
-<!--Lets News Section-->
-<section class="contact-sec-wrapper fix section-bg section-padding1">
-   <div class="container">
-      <div class="row align-items-end d-flex">
-         <div class="col-lg-6 col-xl-5">
-            <div class="section-title-3 letsnewsposi">
-               <h3>Latest News & Updates</h3>
-               <p>In social science, agency is defined as the capacity of individuals to act independently to make their own free choices. </p>
-            </div>
-         </div>
-         <div class="col-lg-6 col-xl-6 mt-5 mt-lg-0 offset-xl-1">
-            <div class="homepage-contact-from ms-xl-5">
-               <form action="" method="POST" class="row letsnewsposi" id="contact-form">
-                  <div class="col-md-6 col-12">
-                     <div class="single-personal-info">
-                        <input type="text" name="name" placeholder="Name">
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-12">
-                     <div class="single-personal-info">
-                        <input type="email" name="email" placeholder="Email">
-                     </div>
-                  </div>
-                  <div class="col-md-12 col-12">
-                     <input class="submit-btn" type="submit" value="Submit Now">
-                  </div>
-               </form>
-               <span class="form-message"></span>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
 
 
 <?php get_footer(); ?>

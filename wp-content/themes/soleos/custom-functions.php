@@ -16,8 +16,6 @@ if (!function_exists('soleos_style_css')) {
 		wp_enqueue_style('owl-theme', get_template_directory_uri() . '/assets/css/owl.theme.css', array(), 'all');
 		wp_enqueue_style('bootstrap-min', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), 'all');
 		wp_enqueue_style('style-min', get_template_directory_uri() . '/assets/css/style.css', array(), 'all');
-		// wp_enqueue_style('fontAwesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-		// wp_enqueue_style('fontsPoppins', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap');
 	}
 	add_action('wp_head', 'soleos_style_css', 1);
 }
@@ -39,7 +37,7 @@ if (!function_exists('soleos_script_js')) {
 		wp_enqueue_script('counterup-min', get_template_directory_uri() . '/assets/js/counterup.min.js', array(), true);
 		wp_enqueue_script('wow-min', get_template_directory_uri() . '/assets/js/wow.min.js', array(), true);
 		wp_enqueue_script('metismenu', get_template_directory_uri() . '/assets/js/metismenu.js', array(), true);
-		//wp_enqueue_script('ajax-mail', get_template_directory_uri() . '/assets/js/ajax-mail.js', array(), true);
+		wp_enqueue_script('ajax-mail', get_template_directory_uri() . '/assets/js/ajax-mail.js', array(), true);
 		wp_enqueue_script('active', get_template_directory_uri() . '/assets/js/active.js', array(), true);
 	}
 	add_action('wp_footer', 'soleos_script_js');
@@ -111,38 +109,38 @@ add_action('login_enqueue_scripts', 'acf_admin_theme_style');
 /**
  * Post Type: Services.
  */
-function register_soleos_services() {
-	$labels = [
-		"name" => __( "Services", "soleos" ),
-		"singular_name" => __( "Services", "soleos" ),
-	];
-	$args = [
-		"label" => __( "Services", "soleos" ),
-		"labels" => $labels,
-		"description" => "",
-		"public" => true,
-		"publicly_queryable" => true,
-		"show_ui" => true,
-		"show_in_rest" => true,
-		"rest_base" => "",
-		"rest_controller_class" => "WP_REST_Posts_Controller",
-		"has_archive" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"delete_with_user" => false,
-		"exclude_from_search" => false,
-		"capability_type" => "post",
-		"map_meta_cap" => true,
-		"hierarchical" => true,
-		"rewrite" => [ "slug" => "services", "with_front" => true ],
-		"query_var" => true,
-		"menu_icon" => "dashicons-grid-view",
-		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
-		"show_in_graphql" => false,
-	];
-	register_post_type( "services", $args );
-}
-add_action( 'init', 'register_soleos_services' );
+// function register_soleos_services() {
+// 	$labels = [
+// 		"name" => __( "Services", "soleos" ),
+// 		"singular_name" => __( "Services", "soleos" ),
+// 	];
+// 	$args = [
+// 		"label" => __( "Services", "soleos" ),
+// 		"labels" => $labels,
+// 		"description" => "",
+// 		"public" => true,
+// 		"publicly_queryable" => true,
+// 		"show_ui" => true,
+// 		"show_in_rest" => true,
+// 		"rest_base" => "",
+// 		"rest_controller_class" => "WP_REST_Posts_Controller",
+// 		"has_archive" => true,
+// 		"show_in_menu" => true,
+// 		"show_in_nav_menus" => true,
+// 		"delete_with_user" => false,
+// 		"exclude_from_search" => false,
+// 		"capability_type" => "post",
+// 		"map_meta_cap" => true,
+// 		"hierarchical" => true,
+// 		"rewrite" => [ "slug" => "services", "with_front" => true ],
+// 		"query_var" => true,
+// 		"menu_icon" => "dashicons-grid-view",
+// 		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
+// 		"show_in_graphql" => false,
+// 	];
+// 	register_post_type( "services", $args );
+// }
+// add_action( 'init', 'register_soleos_services' );
 
 
 /**
@@ -250,7 +248,6 @@ add_action( 'init', 'register_soleos_testi_category' );
 
 
 
-
 // Allow SVG
 add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
 	global $wp_version;
@@ -292,3 +289,56 @@ function add_specific_menu_location_atts( $atts, $item, $args ) {
     return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'add_specific_menu_location_atts', 10, 3 );
+
+
+
+
+	// Function to get the client IP address
+function get_client_ip() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+
+}
+add_shortcode('client_ip', 'get_client_ip');
+
+
+// contact form 7 validation
+add_filter( 'wpcf7_before_send_mail', function( $contact_form, &$abort ) {
+	$submission = WPCF7_Submission::get_instance();
+   $data = $submission->get_posted_data();
+   $email = sanitize_text_field($data['email']);
+
+   if (preg_match("/[~`!@#$%^&*()+={}\[\]|\\:;\"'<>,.?\/]/", sanitize_text_field( $data['fullname'] ) ))
+   {
+	   $abort = true;
+	   $submission->set_response("Invalid Your Name. Please try again.");
+   }
+   else if (preg_match("/[~`!@#$%^&*()+={}\[\]|\\:;\"'<>,.?\/]/", sanitize_text_field($data['subject']) ))
+   {
+	   $abort = true;
+	   $submission->set_response("Invalid Your Subject. Please try again later.");
+   }
+   else if (preg_match("/[~`!@#$%^&*()+={}\[\]|\\:;\"'<>,.?\/]/", sanitize_text_field($data['message']) ))
+   {
+	   $abort = true;
+	   $submission->set_response("There was an error trying to send your message. Please try again later.");
+   }
+}, 10, 2 );
+
+
+// remove archive prefix "Archives"
+add_filter('get_the_archive_title_prefix','__return_false');

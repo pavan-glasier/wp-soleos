@@ -12,7 +12,7 @@
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="sizes customelements history pointerevents postmessage webgl websockets cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox picture srcset webworkers">
 
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -23,7 +23,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('body-wrapper font-cambria'); ?>>
+<body <?php body_class('body-wrapper font-cambria carousel-caption-1'); ?>>
 	<?php wp_body_open(); ?>
 	<!-- Start Soleos loader -->
 	<div id="preloader" class="preloader">
