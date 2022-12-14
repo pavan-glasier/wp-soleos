@@ -1,41 +1,41 @@
 /* 
  * ACF "repeat-horizontal" class, display repeaters in horizontal columns 
  */
-.repeat-horizontal .acf-repeater .acf-row,
-.repeat-horizontal-2 .acf-repeater .acf-row,
-.repeat-horizontal-3 .acf-repeater .acf-row,
-.repeat-horizontal-4 .acf-repeater .acf-row,
-.repeat-horizontal-5 .acf-repeater .acf-row,
-.repeat-horizontal-6 .acf-repeater .acf-row {
+.repeat-horizontal-1 > .acf-input > .acf-repeater > table > tbody > .acf-row,
+.repeat-horizontal-2 > .acf-input > .acf-repeater > table > tbody > .acf-row,
+.repeat-horizontal-3 > .acf-input > .acf-repeater > table > tbody > .acf-row,
+.repeat-horizontal-4 > .acf-input > .acf-repeater > table > tbody > .acf-row,
+.repeat-horizontal-5 > .acf-input > .acf-repeater > table > tbody > .acf-row,
+.repeat-horizontal-6 > .acf-input > .acf-repeater > table > tbody > .acf-row {
     display: grid;
     grid-template-columns: 30px auto 30px;
 }
-.repeat-horizontal .acf-repeater tbody {
+.repeat-horizontal-1 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
-    grid-template-columns: 332px 332px 332px 332px;
+    grid-template-columns: 100%;
 }
-.repeat-horizontal-2 .acf-repeater tbody {
+.repeat-horizontal-2 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
     grid-template-columns: 50% 50%;
 }
-.repeat-horizontal-3 .acf-repeater tbody {
+.repeat-horizontal-3 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
     grid-template-columns: 33.33% 33.33% 33.33%;
 }
-.repeat-horizontal-4 .acf-repeater tbody {
+.repeat-horizontal-4 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
     grid-template-columns: 25% 25% 25% 25%;
 }
-.repeat-horizontal-5 .acf-repeater tbody {
+.repeat-horizontal-5 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
-.repeat-horizontal-6 .acf-repeater tbody {
+.repeat-horizontal-6 > .acf-input > .acf-repeater > table > tbody {
     display: grid;
     row-gap: 1.5rem;
     grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;

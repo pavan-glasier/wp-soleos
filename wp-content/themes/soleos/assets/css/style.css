@@ -2830,8 +2830,9 @@ header.header-1 .main-menu ul>li>a {
   overflow: hidden;
 }
 
+
 header.header-1 .main-menu ul>li:hover>a {
-  color: #3f3f41;
+  color: #ff7f08;
 }
 
 header.header-1 .main-menu ul>li:hover>ul {
@@ -2844,7 +2845,8 @@ header.header-1 .main-menu ul>li:hover>ul {
 header.header-1 .main-menu ul>li>ul {
   position: absolute;
   top: 100%;
-  width: 200px;
+  min-width: 250px;
+  width: max-content;
   background-color: #FFF;
   left: 0;
   z-index: 999;
@@ -2856,7 +2858,8 @@ header.header-1 .main-menu ul>li>ul {
   transform: translateY(40px);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  padding: 10px 0px;
+  padding: 0px 0px;
+  border-radius: 6px;
 }
 
 header.header-1 .main-menu ul>li>ul li {
@@ -2866,11 +2869,14 @@ header.header-1 .main-menu ul>li>ul li {
 header.header-1 .main-menu ul>li>ul li a {
   display: block;
   color: #252525;
-  padding: 12px 25px;
+  padding: 14px 25px;
+  margin: 8px 8px;
+  border-radius: 4px;
 }
 
 header.header-1 .main-menu ul>li>ul li a:hover {
   color: #3f3f41;
+  background: #fe7e082e;
 }
 
 header.header-1 .main-menu ul>li>ul ul {
@@ -15595,4 +15601,12 @@ blockquote {
 }
 .accordion-button:focus {
   box-shadow: none !important;
+}
+.active, .active > a,
+.current-menu-ancestor > a,
+.current-menu-item > a {
+  color: #fe7e08 !important;
+}
+.sub-menu .active > a{
+  background: #fe7e082e;
 }
